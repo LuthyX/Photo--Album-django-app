@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <!-- CSS only -->
+    <style>
+        .image-thumbnail{
+            height: 200px;
+        }
+    </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <nav>
+        <!-- Image and text -->
+        <nav class="navbar navbar-light bg-dark">
+            <a class="navbar-brand" href="{% url 'gallery' %}">
+            <img src="https://i.pinimg.com/originals/96/63/a3/9663a3aa79a6eb28d1d8722a34f55568.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <span style="color:white">My Photo Album </span> 
+            </a>
+        </nav>
+    </nav>
+    <div class="m-5">
+        <div class="row">
+            <div class="col-3">
+              Categories
+              <div class="list-group">
+                <a href="{% url 'gallery' %}" class="list-group-item list-group-item-action">All</a>
+                {% for category in categories %}
+                <a href="{% url 'viewcategory' category.id %}" class="list-group-item list-group-item-action">{{category.name}}</a>
+                {% endfor %}
+                <a href="{% url 'addphoto' %}" class="btn btn-outline-dark btn-sm m-1">Add New Photo</a>
+              </div>
+              
+            </div>
+            <div class="col-md-9">
+              <div style="text-align: center;">
+                  Gallery
+              </div>
+                <div class="row">
+                {% for photo  in photos %}
+                  <div class="col-md-4">
+                    <div class="card m-1">
+                        <img class="image-thumbnail" src="{{photo.image.url}}" alt="Card image cap">
+                        <div class="card-body">
+                          <small>Category: {{photo.category.name}}</small>
+                        </div>
+                        <a href="{% url 'viewphoto' photo.id  %}" class="btn btn-outline-dark btn-sm m-1" >View</a>
+                        <a href="{% url 'deletephoto' photo.id  %}" style="color: red;" class="btn btn-outline-dark btn-sm m-1" >Delete</a>
+                    </div>
+                   </div>
+                   {% endfor %}
+                   
+              
+              
+            
+    </div>
+</body>
+</html>
