@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+      input{
+        max-width: 450px;
+      }
+      .login-wrap{
+        display: flex;
+        height: 80vh;
+        align-items: center;
+        justify-content: center;
+      }
+      .form{
+          width: 600px;
+      }
+    </style>
+</head>
+<body class="m-5">
+    {% if page == 'login' %}
+    
+    <div class="login-wrap">
+      <form method="POST", class="form" action="">
+        <h1> LOGIN</h1>
+        <h4>Login to see your photos and share with friends</h4>
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input required type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input required type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <p>No account? Click to <a href="{% url 'register_user' %}">register</a> </p>
+      </form>
+    </div>
+
+      {% else %}
+       <div class="login-wrap">
+
+          <form action="", method="POST" class="form">
+                      {% csrf_token %}
+                  <h1>REGISTER NOW</h1>
+                  {% for field in form %}
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">{{field.label}}</label>
+                    {{field}}
+                  </div>
+                  {% endfor %}
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                      <p>Registered Already? Click to <a href="{% url 'login_user' %}">Login</a> </p>
+              </form>
+       </div>
+
+      {% endif %}
+
+
+</body>
+</html>

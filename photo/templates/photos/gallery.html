@@ -26,6 +26,9 @@
     <div class="m-5">
         <div class="row">
             <div class="col-3">
+              {% if request.user.is_authenticated %}
+                  Hi, {{request.user}}
+              {% endif %}
               Categories
               <div class="list-group">
                 <a href="{% url 'gallery' %}" class="list-group-item list-group-item-action">All</a>
@@ -33,6 +36,7 @@
                 <a href="{% url 'viewcategory' category.id %}" class="list-group-item list-group-item-action">{{category.name}}</a>
                 {% endfor %}
                 <a href="{% url 'addphoto' %}" class="btn btn-outline-dark btn-sm m-1">Add New Photo</a>
+                <a href="{% url 'logout_user' %}" class="btn btn-outline-dark btn-sm m-1">Log Out</a>
               </div>
               
             </div>
