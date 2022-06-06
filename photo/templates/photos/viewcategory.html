@@ -48,6 +48,7 @@
                           <small>Category: {{photo.name}}</small>
                         </div>
                         <a href="{% url 'viewphoto' photo.id  %}" class="btn btn-outline-dark btn-sm m-1" >View</a>
+                        <a href="{% url 'deletephoto' photo.id  %}" style="color: red;" class="btn btn-outline-dark btn-sm m-1" >Delete from category</a>
                     </div>
                    </div>
                    {% empty%}
